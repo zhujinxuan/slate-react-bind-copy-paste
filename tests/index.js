@@ -8,7 +8,7 @@ const badTablePlugin = BadTable();
 const editTablePlugin = EditTable();
 
 const { rules } = badTablePlugin;
-const pastePlugin = Paste(rules);
+const pastePlugin = Paste({ rules });
 const plugins = [badTablePlugin, editTablePlugin, pastePlugin];
 const { changes } = pastePlugin;
 

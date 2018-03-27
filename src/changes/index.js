@@ -3,8 +3,9 @@
 import deleteAtCurrentRange from './delete';
 import insertFragment from './insertFragment';
 import insertText from './insertText';
+import { type Option } from '../type';
 
-function createChanges(opts): Object {
+function createChanges(opts: Option): Object {
     return {
         insertText: insertText(opts),
         delete: deleteAtCurrentRange(opts),

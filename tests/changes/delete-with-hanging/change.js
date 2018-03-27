@@ -3,10 +3,10 @@
 
 import h from '../h';
 
-export function runChange(plugin, change) {
-    const { deleteAtRange } = plugin;
-    return deleteAtRange(change, change.value.selection);
+export function runChange(changes, change) {
+    return changes.delete(change);
 }
+
 export const input = (
     <value>
         <document>

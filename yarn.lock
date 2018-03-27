@@ -5718,9 +5718,9 @@ slate-edit-table@^0.14.3:
   version "0.14.3"
   resolved "https://registry.yarnpkg.com/slate-edit-table/-/slate-edit-table-0.14.3.tgz#54769bc060531ba4a6e1d8df9a0e16216b0102fc"
 
-slate-hyperscript@^0.5.6:
-  version "0.5.6"
-  resolved "https://registry.yarnpkg.com/slate-hyperscript/-/slate-hyperscript-0.5.6.tgz#a721f2ea297d775788b07015b7c735b5701cfb1b"
+slate-hyperscript@^0.5.9:
+  version "0.5.9"
+  resolved "https://registry.yarnpkg.com/slate-hyperscript/-/slate-hyperscript-0.5.9.tgz#b0b8ed64ea93be2d2b5c1aa480e8a0bcda9c399e"
   dependencies:
     is-empty "^1.0.0"
     is-plain-object "^2.0.4"

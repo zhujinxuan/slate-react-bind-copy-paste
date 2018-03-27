@@ -3,7 +3,7 @@
 import { type Set } from 'immutable';
 import { type Change, type Mark } from 'slate';
 
-function insertText(opts) {
+function insertText(opts: Option) {
     return (change: Change, text: string, marks?: Set<Mark>) => {
         const { value } = change;
         const { document, selection } = value;

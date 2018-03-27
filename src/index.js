@@ -13,7 +13,7 @@ import {
 import { type Document } from 'slate';
 
 import createChanges from './changes/index';
-import createOnKeyDown from './onKeyDown/index';
+// import createOnKeyDown from './onKeyDown/index';
 import createOnCopy from './onCopy';
 import createOnPaste from './onPaste';
 
@@ -30,14 +30,14 @@ type pluginInterface = {
 };
 function createPlugin(pluginOptions: pluginInterface = {}) {
     const { rules, htmlSerializer } = pluginOptions;
-    const deleteAtRange = getGen.generate(rules.getFragmentAtRange);
+    const deleteAtRange = deleteGen.generate(rules.deleteAtRange);
     const insertFragmentAtRange = insertGen.generate(
         rules.insertFragmentAtRange,
         {
             deleteAtRange
         }
     );
-    const getFragmentAtRange = deleteGen.generate(rules.getFragmentAtRange);
+    const getFragmentAtRange = getGen.generate(rules.getFragmentAtRange);
     const opts = {
         deleteAtRange,
         insertFragmentAtRange,
@@ -45,7 +45,7 @@ function createPlugin(pluginOptions: pluginInterface = {}) {
         htmlSerializer
     };
     const changes = createChanges(opts);
-    const onKeyDown = createOnKeyDown(changes);
+    const onKeyDown = () => null;
     const onCopy = createOnCopy(opts);
     const onPaste = createOnPaste(opts, changes);
     return { onKeyDown, changes, onCopy, onPaste };
