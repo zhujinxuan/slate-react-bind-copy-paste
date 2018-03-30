@@ -3,7 +3,8 @@
 import { type Change, type Document } from 'slate';
 import { type Option } from '../type';
 
-function insertFragment(opts: Option) {
+type typeInsertFragment = (Change, Document, options?: Object) => Change;
+function insertFragment(opts: Option): typeInsertFragment {
     return (change: Change, fragment: Document, options?: Object = {}) => {
         const snapshot = !!options.snapshot;
         return opts.insertFragmentAtRange(

@@ -2,8 +2,10 @@
 
 import { type Set } from 'immutable';
 import { type Change, type Mark } from 'slate';
+import { type Option } from '../type';
 
-function insertText(opts: Option) {
+type typeInsertText = (Change, string, marks?: Set<Mark>) => Change;
+function insertText(opts: Option): typeInsertText {
     return (change: Change, text: string, marks?: Set<Mark>) => {
         const { value } = change;
         const { document, selection } = value;
@@ -11,17 +13,23 @@ function insertText(opts: Option) {
             marks ||
             selection.marks ||
             document.getInsertMarksAtRange(selection);
-        if (!selection.isCollapsed) {
-            opts.deleteAtRange(change, change.value.selection, {
+
+        change.insertTextByKey(value.startKey, value.startOffset, text, marks, {
+            normalize: false
+        });
+
+        let range = selection.isBackward ? selection.flip() : selection;
+        if (value.endKey === value.startkey)
+            range = range.moveFocus(text.length);
+        range = range.moveAnchor(text.length);
+
+        if (!range.isCollapsed) {
+            opts.deleteAtRange(change, range, {
                 snapshot: true,
                 normalize: false
             });
         }
-        change.collapseToStart();
-        change.insertTextAtRange(change.value.selection, text, marks, {
-            normalize: false
-        });
-        // change.select(selection.collapseToStart().move(text.length));
+
         if (!selection.isCollapsed) {
             change.normalize();
         }
@@ -34,3 +42,4 @@ function insertText(opts: Option) {
 }
 
 export default insertText;
+export type { typeInsertText };

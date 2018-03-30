@@ -2,6 +2,7 @@
 import { type Change } from 'slate';
 import { type Option } from '../type';
 
+export type typeDelete = (Change, options?: Object) => Change;
 function deleteAtCurrentRange(opts: Option) {
     return (change: Change, options?: Object = { snapshot: true }): Change => {
         const { snapshot }: { snapshot: boolean } = options;

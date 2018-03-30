@@ -1,11 +1,16 @@
 // @flow
 
-import deleteAtCurrentRange from './delete';
-import insertFragment from './insertFragment';
-import insertText from './insertText';
+import deleteAtCurrentRange, { type typeDelete } from './delete';
+import insertFragment, { type typeInsertFragment } from './insertFragment';
+import insertText, { type typeInsertText } from './insertText';
 import { type Option } from '../type';
 
-function createChanges(opts: Option): Object {
+export type Changes = {
+    insertText: typeInsertText,
+    delete: typeDelete,
+    insertFragment: typeInsertFragment
+};
+function createChanges(opts: Option): Changes {
     return {
         insertText: insertText(opts),
         delete: deleteAtCurrentRange(opts),
