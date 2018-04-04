@@ -76,6 +76,7 @@
     "slate"
   ],
   "dependencies": {
+    "debug": "^3.1.0",
     "immutable": "^3.8.1",
     "is-hotkey": "^0.1.1",
     "slate": ">0.32.0 <0.34.0",

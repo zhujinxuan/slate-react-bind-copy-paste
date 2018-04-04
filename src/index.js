@@ -11,11 +11,14 @@ import {
     deleteAtRange as deleteGen
 } from 'slate-bind-copy-paste';
 import { type Document } from 'slate';
+import Debug from 'debug';
 
 import createChanges from './changes/index';
-// import createOnKeyDown from './onKeyDown/index';
-import createOnCopy from './onCopy';
-import createOnPaste from './onPaste';
+import onCopy from './onCopy';
+import onPaste from './onPaste';
+import onBeforeInput from './onBeforeInput';
+
+const eventDebugger = new Debug('slate:after:customized');
 
 type pluginInterface = {
     rules: {
@@ -46,9 +49,13 @@ function createPlugin(pluginOptions: pluginInterface = {}) {
     };
     const changes = createChanges(opts);
     const onKeyDown = () => null;
-    const onCopy = createOnCopy(opts);
-    const onPaste = createOnPaste(opts, changes);
-    return { onKeyDown, changes, onCopy, onPaste };
+    return {
+        onKeyDown,
+        changes,
+        onCopy: onCopy(opts, eventDebugger),
+        onPaste: onPaste(opts, changes, eventDebugger),
+        onBeforeInput: onBeforeInput(opts, changes, eventDebugger)
+    };
 }
 
 export default createPlugin;

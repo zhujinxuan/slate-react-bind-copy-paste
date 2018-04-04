@@ -2,13 +2,17 @@
 
 import { type Change, type Editor } from 'slate';
 import { getEventTransfer } from 'slate-react';
+import type Debug from 'debug';
+import { type Changes } from './changes/index';
+import { type Option } from './type';
 
-function onCopy(opts, changes) {
+function onPaste(opts: Option, changes: Changes, debug: Debug) {
     return (
         event: SyntheticClipboardEvent<*>,
         change: Change,
         editor: Editor
     ): ?true => {
+        debug('onPaste', { event });
         const { htmlSerializer } = opts;
         const transfer = getEventTransfer(event);
         if (transfer.type === 'text') {
@@ -28,4 +32,4 @@ function onCopy(opts, changes) {
     };
 }
 
-export default onCopy;
+export default onPaste;

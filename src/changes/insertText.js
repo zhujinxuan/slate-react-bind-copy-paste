@@ -1,11 +1,12 @@
 // @flow
 
 import { type Set } from 'immutable';
+import type Debug from 'debug';
 import { type Change, type Mark } from 'slate';
 import { type Option } from '../type';
 
 type typeInsertText = (Change, string, marks?: Set<Mark>) => Change;
-function insertText(opts: Option): typeInsertText {
+function insertText(opts: Option, debug: Debug): typeInsertText {
     return (change: Change, text: string, marks?: Set<Mark>) => {
         const { value } = change;
         const { document, selection } = value;
@@ -14,6 +15,7 @@ function insertText(opts: Option): typeInsertText {
             selection.marks ||
             document.getInsertMarksAtRange(selection);
 
+        debug('insertText', { change, text, marks });
         change.insertTextByKey(value.startKey, value.startOffset, text, marks, {
             normalize: false
         });
