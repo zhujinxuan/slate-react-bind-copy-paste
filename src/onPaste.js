@@ -2,7 +2,7 @@
 
 import { type Change, type Editor } from 'slate';
 import { getEventTransfer } from 'slate-react';
-import type Debug from 'debug';
+import Debug from 'debug';
 import { type Changes } from './changes/index';
 import { type Option } from './type';
 
@@ -15,6 +15,7 @@ function onPaste(opts: Option, changes: Changes, debug: Debug) {
         debug('onPaste', { event });
         const { htmlSerializer } = opts;
         const transfer = getEventTransfer(event);
+        debug('onPaste', { transfer });
         if (transfer.type === 'text') {
             const { text } = transfer;
             changes.insertText(change, text);
