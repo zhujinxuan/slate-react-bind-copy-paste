@@ -50,8 +50,8 @@ function createPlugin(pluginOptions: pluginInterface = {}) {
     };
     const changes = createChanges(opts);
     return {
-        onKeyDown: onKeyDown(opts),
         changes,
+        onKeyDown: onKeyDown(opts),
         onCopy: onCopy(opts, eventDebugger),
         onPaste: onPaste(opts, changes, eventDebugger),
         onBeforeInput: onBeforeInput(opts, changes, eventDebugger)
