@@ -32,7 +32,7 @@ type pluginInterface = {
         deserialize: string => Document
     }
 };
-function createPlugin(pluginOptions: pluginInterface = {}) {
+function createPlugin(pluginOptions: pluginInterface) {
     const { rules, htmlSerializer } = pluginOptions;
     const deleteAtRange = deleteGen.generate(rules.deleteAtRange);
     const insertFragmentAtRange = insertGen.generate(
@@ -51,7 +51,7 @@ function createPlugin(pluginOptions: pluginInterface = {}) {
     const changes = createChanges(opts);
     return {
         changes,
-        onKeyDown: onKeyDown(opts),
+        onKeyDown: onKeyDown(opts, changes),
         onCopy: onCopy(opts, eventDebugger),
         onPaste: onPaste(opts, changes, eventDebugger),
         onBeforeInput: onBeforeInput(opts, changes, eventDebugger)

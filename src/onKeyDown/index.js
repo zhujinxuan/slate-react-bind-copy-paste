@@ -1,20 +1,20 @@
 // @flow
+import { type Change, type Editor } from 'slate';
 import isHotKey from 'is-hotkey';
 import Debug from 'debug';
-import { type Change, type Editor } from 'slate';
 import { type Option } from '../type';
 import { type Changes } from '../changes/index';
 
 const HOTKEYS = {
-    SPLITBLOCK: (event: SyntheticKeyBoardEvent<*>) => isHotKey('enter', event),
-    DELETE: (event: SyntheticKeyBoardEvent<*>) => isHotKey('backspace', event)
+    SPLITBLOCK: (event: SyntheticKeyboardEvent<*>) => isHotKey('enter', event),
+    DELETE: (event: SyntheticKeyboardEvent<*>) => isHotKey('backspace', event)
 };
 
 const debug = new Debug('slate:event:customized');
 
 export default function onKeyDown(opts: Option, changes: Changes) {
     return (
-        event: SyntheticKeyBoardEvent<*>,
+        event: SyntheticKeyboardEvent<*>,
         change: Change,
         editor: Editor
     ): ?true => {

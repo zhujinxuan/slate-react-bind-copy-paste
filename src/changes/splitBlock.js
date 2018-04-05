@@ -4,7 +4,7 @@ import type Debug from 'debug';
 import { type Change } from 'slate';
 import { type Option } from '../type';
 
-type typeSplitBlock = Change => Change;
+export type typeSplitBlock = Change => Change;
 function splitBlock(opts: Option, debug: Debug): typeSplitBlock {
     return (change: Change) => {
         const { value } = change;
@@ -34,4 +34,3 @@ function splitBlock(opts: Option, debug: Debug): typeSplitBlock {
 }
 
 export default splitBlock;
-export type { typeSplitBlock };

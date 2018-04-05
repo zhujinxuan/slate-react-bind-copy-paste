@@ -14,7 +14,7 @@ function onCopy(opts: Option, debug: Debug) {
         debug('onCopy', { event });
         const { value } = change;
         const { document, selection } = value;
-        const fragment = opts.getFragment(document, selection);
+        const fragment = opts.getFragmentAtRange(document, selection);
         if (!fragment) return undefined;
         cloneFragment(event, value, fragment);
         return true;

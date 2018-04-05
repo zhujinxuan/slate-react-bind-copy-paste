@@ -12,6 +12,7 @@ export type Changes = {
     insertFragment: typeInsertFragment,
     splitBlock: typeSplitBlock
 };
+
 const debug = new Debug('slate:changes:customized');
 function createChanges(opts: Option): Changes {
     return {
@@ -21,4 +22,5 @@ function createChanges(opts: Option): Changes {
         splitBlock: splitBlock(opts, debug)
     };
 }
+
 export default createChanges;

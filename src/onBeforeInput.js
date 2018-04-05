@@ -1,7 +1,8 @@
 // @flow
+import { type Change, type Editor } from 'slate';
+import type Debug from 'debug';
 import { type Changes } from './changes/index';
 import { type Option } from './type';
-import type Debug from 'debug';
 
 export default function onBeforeInput(
     opts: Option,
@@ -15,7 +16,7 @@ export default function onBeforeInput(
     ): ?true => {
         debug('onBeforeInput', event);
         event.preventDefault();
-        changes.insertText(event.data);
+        changes.insertText(change, event.data);
         return true;
     };
 }

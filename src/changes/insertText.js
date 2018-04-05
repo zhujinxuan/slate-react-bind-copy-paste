@@ -5,7 +5,7 @@ import type Debug from 'debug';
 import { type Change, type Mark } from 'slate';
 import { type Option } from '../type';
 
-type typeInsertText = (Change, string, marks?: Set<Mark>) => Change;
+export type typeInsertText = (Change, string, marks?: Set<Mark>) => Change;
 function insertText(opts: Option, debug: Debug): typeInsertText {
     return (change: Change, text: string, marks?: Set<Mark>) => {
         const { value } = change;
@@ -46,4 +46,3 @@ function insertText(opts: Option, debug: Debug): typeInsertText {
 }
 
 export default insertText;
-export type { typeInsertText };
