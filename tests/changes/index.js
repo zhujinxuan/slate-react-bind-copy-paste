@@ -7,7 +7,7 @@ function runTest(plugins, changes) {
     const SCHEMA = Schema.create({
         plugins
     });
-    describe('slate-bad-table', () => {
+    describe('slate-react-bind-copy-paste', () => {
         const tests = fs.readdirSync(__dirname);
 
         tests.forEach(test => {
