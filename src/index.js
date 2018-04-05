@@ -17,6 +17,7 @@ import createChanges from './changes/index';
 import onCopy from './onCopy';
 import onPaste from './onPaste';
 import onBeforeInput from './onBeforeInput';
+import onKeyDown from './onKeyDown';
 
 const eventDebugger = new Debug('slate:after:customized');
 
@@ -48,9 +49,8 @@ function createPlugin(pluginOptions: pluginInterface = {}) {
         htmlSerializer
     };
     const changes = createChanges(opts);
-    const onKeyDown = () => null;
     return {
-        onKeyDown,
+        onKeyDown: onKeyDown(opts),
         changes,
         onCopy: onCopy(opts, eventDebugger),
         onPaste: onPaste(opts, changes, eventDebugger),
