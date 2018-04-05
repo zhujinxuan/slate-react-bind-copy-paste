@@ -5692,14 +5692,14 @@ slash@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/slash/-/slash-1.0.0.tgz#c41f2f6c39fc16d1cd17ad4b5d896114ae470d55"
 
-slate-bad-table@^0.0.13:
-  version "0.0.13"
-  resolved "https://registry.yarnpkg.com/slate-bad-table/-/slate-bad-table-0.0.13.tgz#f32c180b77742d2e4b7f9988f503da924995061d"
+slate-bad-table@^0.0.15:
+  version "0.0.15"
+  resolved "https://registry.yarnpkg.com/slate-bad-table/-/slate-bad-table-0.0.15.tgz#c0570de3ddd9ef9ea91c3185ee92f5b83ce8fdf6"
   dependencies:
     immutable "^3.8.1"
     is-hotkey "^0.1.1"
     slate ">0.32.0 <0.34.0"
-    slate-bind-copy-paste "^0.1.1"
+    slate-bind-copy-paste "^0.1.4"
 
 slate-base64-serializer@^0.2.28:
   version "0.2.28"
@@ -5707,10 +5707,11 @@ slate-base64-serializer@^0.2.28:
   dependencies:
     isomorphic-base64 "^1.0.2"
 
-slate-bind-copy-paste@^0.1.1:
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/slate-bind-copy-paste/-/slate-bind-copy-paste-0.1.1.tgz#f0f2817fd89c65fdd3e3595aae7ae551ced84c1f"
+slate-bind-copy-paste@^0.1.4:
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/slate-bind-copy-paste/-/slate-bind-copy-paste-0.1.4.tgz#a47344ae08ff159ede6e5d4467a82bf13320563e"
   dependencies:
+    debug "^3.1.0"
     immutable "^3.8.2"
     slate ">0.32.4 <0.34.0"
 

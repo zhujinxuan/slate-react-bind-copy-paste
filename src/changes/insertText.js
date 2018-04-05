@@ -21,8 +21,9 @@ function insertText(opts: Option, debug: Debug): typeInsertText {
         });
 
         let range = selection.isBackward ? selection.flip() : selection;
-        if (value.endKey === value.startkey)
+        if (range.anchorKey === range.focusKey) {
             range = range.moveFocus(text.length);
+        }
         range = range.moveAnchor(text.length);
 
         if (!range.isCollapsed) {
@@ -40,6 +41,7 @@ function insertText(opts: Option, debug: Debug): typeInsertText {
         if (selection.marks && document != change.value.document) {
             change.select({ marks: null });
         }
+        return change.collapseToEnd();
     };
 }
 
