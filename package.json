@@ -1,7 +1,7 @@
 {
   "name": "slate-react-bind-copy-paste",
   "description": "Bind deleteAtRange, insertAtRange and getFragmentAtRange to slate-react events",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "license": "Apache-2.0",
   "main": "lib/slate-react-bind-copy-paste.js",
   "module": "lib/slate-react-bind-copy-paste.es.js",
@@ -66,6 +66,7 @@
     "build:rollup": "rollup --config ./support/rollup/config.js",
     "build:flow": "flow-copy-source -v ./src/ ./lib/",
     "build": "yarn build:rollup && yarn build:flow",
+    "prepublish": "yarn build",
     "lint": "eslint ./",
     "start": "webpack-dev-server --config ./support/webpack/config.js",
     "build-example": "cross-env NODE_ENV=production rollup --config ./support/rollup/config.js && cross-env NODE_ENV=production webpack --config support/webpack/config.js",
