@@ -6,7 +6,6 @@ type Option = {
     insertFragmentAtRange: (Change, Range, Document, ?Object) => Change,
     getFragmentAtRange: (Node, Range) => Document,
     htmlSerializer?: {
-        serialize: Document => string,
         deserialize: string => Document
     }
 };

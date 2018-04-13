@@ -28,7 +28,6 @@ type pluginInterface = {
         getFragmentAtRange: Array<typeGetFragmentAtRangeRule>
     },
     htmlSerializer?: {
-        serialize: Document => string,
         deserialize: string => Document
     }
 };
