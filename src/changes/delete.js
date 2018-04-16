@@ -9,7 +9,7 @@ function deleteAtCurrentRange(opts: Option, debug: Debug) {
         debug('delete', { change, options });
         const { snapshot }: { snapshot: boolean } = options;
         opts.deleteAtRange(change, change.value.selection, { snapshot });
-        change.collpaseToStart();
+        change.collapseToStart();
         return change;
     };
 }

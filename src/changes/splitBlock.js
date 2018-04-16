@@ -12,6 +12,8 @@ function splitBlock(opts: Option, debug: Debug): typeSplitBlock {
         const { startKey, endKey, startOffset, endOffset } = selection;
         debug('splitBlock');
         const node = document.getClosestBlock(startKey);
+        const marks =
+            selection.marks || document.getInsertMarksAtRange(selection);
         if (!selection.isCollapsed) {
             change.snapshotSelection();
         }
@@ -32,7 +34,11 @@ function splitBlock(opts: Option, debug: Debug): typeSplitBlock {
             }
             opts.deleteAtRange(change, range, { snapshot: false });
         }
-        return change.collapseToEnd();
+        change.collapseToEnd();
+        if (marks && marks.size !== 0) {
+            return change.select({ marks });
+        }
+        return change;
     };
 }
 

@@ -4,14 +4,15 @@
 import h from '../h';
 
 export function runChange(changes, change) {
-    return changes.splitBlock(change);
+    return changes.splitBlock(change).insertText('a');
 }
 
 export const input = (
     <value>
         <document>
             <paragraph>
-                <anchor />B
+                <anchor />
+                <b>B</b>
                 <focus />efore
             </paragraph>
             <image />
@@ -28,6 +29,7 @@ export const output = (
         <document>
             <paragraph />
             <paragraph>
+                <b>a</b>
                 <cursor />efore
             </paragraph>
             <image />
