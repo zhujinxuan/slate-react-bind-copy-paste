@@ -88,6 +88,6 @@
     "slate": "^0.32.0|| ^0.33.0",
     "slate-bad-table": "^0.1.1",
     "slate-bind-copy-paste": "^0.2.1",
-    "slate-react": "^0.12.3"
+    "slate-react": "^0.12.4"
   }
 }

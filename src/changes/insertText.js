@@ -28,7 +28,7 @@ function insertText(opts: Option, debug: Debug): typeInsertText {
 
         if (!range.isCollapsed) {
             opts.deleteAtRange(change, range, {
-                snapshot: true,
+                snapshot: false,
                 normalize: false
             });
         }

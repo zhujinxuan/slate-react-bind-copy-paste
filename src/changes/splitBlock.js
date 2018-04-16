@@ -12,6 +12,9 @@ function splitBlock(opts: Option, debug: Debug): typeSplitBlock {
         const { startKey, endKey, startOffset, endOffset } = selection;
         debug('splitBlock');
         const node = document.getClosestBlock(startKey);
+        if (!selection.isCollapsed) {
+            change.snapshotSelection();
+        }
         change.splitDescendantsByKey(node.key, startKey, startOffset, {
             normalize: selection.isCollapsed
         });
@@ -27,7 +30,7 @@ function splitBlock(opts: Option, debug: Debug): typeSplitBlock {
                     endOffset - startOffset
                 );
             }
-            opts.deleteAtRange(change, range);
+            opts.deleteAtRange(change, range, { snapshot: false });
         }
         return change.collapseToEnd();
     };

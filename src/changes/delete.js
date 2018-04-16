@@ -8,7 +8,9 @@ function deleteAtCurrentRange(opts: Option, debug: Debug) {
     return (change: Change, options?: Object = { snapshot: true }): Change => {
         debug('delete', { change, options });
         const { snapshot }: { snapshot: boolean } = options;
-        return opts.deleteAtRange(change, change.value.selection, { snapshot });
+        opts.deleteAtRange(change, change.value.selection, { snapshot });
+        change.collpaseToEnd();
+        return change;
     };
 }
 export default deleteAtCurrentRange;
