@@ -23,7 +23,7 @@ export default function onKeyDown(opts: Option, changes: Changes) {
             changes.splitBlock(change);
             return true;
         }
-        if (HOTKEYS.DELETE(event)) {
+        if (HOTKEYS.DELETE(event) && change.value.isExpanded) {
             changes.delete(change);
             return true;
         }
