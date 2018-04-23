@@ -6,6 +6,30 @@ import { type Change, type Mark } from 'slate';
 import { type Option } from '../type';
 
 export type typeInsertText = (Change, string, marks?: Set<Mark>) => Change;
+
+function getInsertMarksAtRange(node: Node, range: Range): Set<Mark> {
+    const { startOffset, startKey } = range;
+
+    if (range.isCollapsed && startOffset === 0) {
+        const startBlock = node.getClosestBlock(startKey);
+        if (startBlock && startBlock.getFirstText().key === startKey) {
+            let previousBlock = node.getPreviousBlock(startBlock.key);
+            while (
+                previousBlock &&
+                previousBlock.type.indexOf('table') === -1
+            ) {
+                if (previousBlock.text.length !== 0) {
+                    return node.getInsertMarksAtRange(
+                        range.collapseToEndOf(previousBlock)
+                    );
+                }
+                previousBlock = node.getPreviousBlock(previousBlock.key);
+            }
+        }
+    }
+    return node.getInsertMarksAtRange(range);
+}
+
 function insertText(opts: Option, debug: Debug): typeInsertText {
     return (change: Change, text: string, marks?: Set<Mark>) => {
         const { value } = change;
@@ -13,7 +37,7 @@ function insertText(opts: Option, debug: Debug): typeInsertText {
         marks =
             marks ||
             selection.marks ||
-            document.getInsertMarksAtRange(selection);
+            getInsertMarksAtRange(document, selection);
 
         debug('insertText', { change, text, marks });
         change.insertTextByKey(value.startKey, value.startOffset, text, marks, {
