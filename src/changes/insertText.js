@@ -27,6 +27,20 @@ function insertText(opts: Option, debug: Debug): typeInsertText {
         range = range.moveAnchor(text.length);
 
         if (!range.isCollapsed) {
+            const { startOffset, endOffset, startKey, endKey } = selection;
+            const startBlock = document.getClosestBlock(startKey);
+            const endBlock = document.getClosestBlock(endKey);
+            const isHanging =
+                startOffset === 0 &&
+                endOffset === 0 &&
+                !document.hasVoidParent(startKey) &&
+                startBlock.getFirstText().key === startKey &&
+                endBlock.getFirstText().key === endKey;
+            if (isHanging) {
+                range = range.moveFocusToEndOf(
+                    document.getPreviousBlock(endBlock.key)
+                );
+            }
             opts.deleteAtRange(change, range, {
                 snapshot: false,
                 normalize: false

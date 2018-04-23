@@ -26,10 +26,9 @@ export const input = (
 export const output = (
     <value>
         <document>
+            <paragraph>cat is cute</paragraph>
             <paragraph>
-                cat is cute
-                <cursor />
-                After
+                <cursor />After
             </paragraph>
         </document>
     </value>
