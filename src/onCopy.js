@@ -1,6 +1,6 @@
 // @flow
 
-import { type Change, type Editor } from 'slate';
+import { Value, type Change, type Editor } from 'slate';
 import { cloneFragment } from 'slate-react';
 import type Debug from 'debug';
 import { type Option } from './type';
@@ -16,7 +16,17 @@ function onCopy(opts: Option, debug: Debug) {
         const { document, selection } = value;
         const fragment = opts.getFragmentAtRange(document, selection);
         if (!fragment) return undefined;
-        cloneFragment(event, value, fragment);
+        const { htmlSerializer } = opts;
+        if (htmlSerializer) {
+            event.clipboardData.setData(
+                'text/html',
+                htmlSerializer.serialize(Value.create({ document: fragment }))
+            );
+        } else {
+            cloneFragment(event, value, fragment);
+        }
+        event.preventDefault();
+
         return true;
     };
 }

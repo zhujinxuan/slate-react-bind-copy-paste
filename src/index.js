@@ -10,7 +10,7 @@ import {
     insertFragmentAtRange as insertGen,
     deleteAtRange as deleteGen
 } from 'slate-bind-copy-paste';
-import { type Document } from 'slate';
+import { type Value } from 'slate';
 import Debug from 'debug';
 
 import createChanges from './changes/index';
@@ -28,7 +28,8 @@ type pluginInterface = {
         getFragmentAtRange: Array<typeGetFragmentAtRangeRule>
     },
     htmlSerializer?: {
-        deserialize: string => Document
+        deserialize: string => Value,
+        serialize: Value => string
     }
 };
 function createPlugin(pluginOptions: pluginInterface) {

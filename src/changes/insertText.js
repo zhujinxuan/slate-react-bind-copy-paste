@@ -2,7 +2,7 @@
 
 import { type Set } from 'immutable';
 import type Debug from 'debug';
-import { type Change, type Mark } from 'slate';
+import { type Change, type Mark, type Range, type Node } from 'slate';
 import { type Option } from '../type';
 
 export type typeInsertText = (Change, string, marks?: Set<Mark>) => Change;
